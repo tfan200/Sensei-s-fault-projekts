@@ -1,0 +1,32 @@
+
+from numpy.ma.core import correlate
+from google.colab import files 
+dataToUpload = files.upload()
+
+import pandas as pd
+import statistics
+import plotly.graph_objects as go 
+import plotly.figure_factory as ff
+import plotly.express as px
+import random 
+import numpy as umom
+import csv 
+import seaborn as sns
+
+df = pd.read_csv("Admission_Predict.csv")
+Factor = df["TOEFL Score"].tolist()
+Amrela = df["Chance of admit"].tolist()
+score = df["GRE Score"].tolist()
+
+fig = px.scatter(x = Factor, y = Amrela)
+fig.show()
+colors = []
+
+for data in Amrela:
+  if data == 1:
+    colors.append("green")
+  else:
+    colors.append("red")
+fig = go.Figure(data = go.Scatter(x = Factor, y = score, mode = "markers", marker = dict(color =colors) ))
+
+fig.show()
